@@ -1,0 +1,17 @@
+# Engedélyezi a mod_rewrite használatát
+RewriteEngine On
+
+# Alapértelmezett URL alap beállítása
+RewriteBase /
+
+# Ha a kért URL pontosan az "index.php" fájlra mutat, nem hajt végre további átirányítást
+RewriteRule ^index\.php$ - [L]
+
+# Ha a kért fájl nem létezik
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Ha a kért könyvtár nem létezik
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Minden más kérés esetén az "index.php" fájl kezelje az URL-t
+RewriteRule ^.*$ index.php [L]
